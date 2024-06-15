@@ -37,3 +37,7 @@ The Marketplace API addresses these problems by providing a structured and secur
 - **Security**: Ensures safe and reliable transactions, protecting players from scams and unreliable trades.
 
 By addressing these key issues, the Marketplace API enhances the overall gaming experience, providing players with a robust and user-friendly platform for managing their in-game trades and inventory.
+
+## Project Workflow
+
+This project is being managed and tracked via a github project located at <https://github.com/users/Reyleth/projects/2/views/1>
