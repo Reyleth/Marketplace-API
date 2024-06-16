@@ -3,4 +3,8 @@ from init import app
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Welcome to the Marketplace API!'
+
+@app.route('/login')
+def login():
+    return 'Login'
