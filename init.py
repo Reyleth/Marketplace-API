@@ -4,6 +4,8 @@ from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 from dotenv import load_dotenv
+from flask_jwt_extended import JWTManager
+from flask_bcrypt import Bcrypt
 
 class Base(DeclarativeBase):
     pass
@@ -16,4 +18,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = environ.get("DB_URI")
 db = SQLAlchemy(app, model_class=Base)
 ma = Marshmallow(app)
 # db.init_app(app)
+jwt = JWTManager(app)
+bcrypt = Bcrypt(app)
 
