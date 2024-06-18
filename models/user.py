@@ -15,8 +15,6 @@ class User(db.Model):
     password: Mapped[str] = mapped_column(String(200))
     is_admin: Mapped[bool] = mapped_column(Boolean(), server_default="false")
 
-    cards: Mapped[List["Card"]] = relationship(back_populates='user')
-
 
 class UserSchema(ma.Schema):
     email = fields.Email(required=True)

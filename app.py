@@ -1,3 +1,4 @@
+from datetime import date
 from init import app
 
 
@@ -5,6 +6,6 @@ from init import app
 def hello_world():
     return 'Welcome to the Marketplace API!'
 
-@app.route('/login')
-def login():
-    return 'Login'
+@app.route("/time")
+def time():
+    return {"time": date.today()}
