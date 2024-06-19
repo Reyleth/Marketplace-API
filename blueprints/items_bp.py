@@ -8,7 +8,7 @@ items_bp = Blueprint('items', __name__, url_prefix='/items') # Blueprint for ite
 def get_all_items():
     stmt = db.select(Item)
     items_var = db.session.scalars(stmt).all()
-    return ItemSchema(many=True, only=["id", "title", "description", "date_created"]).dump(items_var)
+    return ItemSchema(many=True, only=["id", "name", "description", "category", "rarity", "price"]).dump(items_var)
 
 @items_bp.route('/<int:id>')
 def get_item(id):

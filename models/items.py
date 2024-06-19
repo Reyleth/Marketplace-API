@@ -11,14 +11,18 @@ class Item(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
 
     # title = db.Column(db.String(100), unique=True, nullable=False)
-    title: Mapped[str] = mapped_column(db.String(100), unique=True, nullable=False)
+    name: Mapped[str] = mapped_column(db.String(100), unique=True, nullable=False)
     # description = db.Column(db.Text(), unique=False, nullable=True)
     description: Mapped[Optional[str]] = mapped_column(db.Text())
-    # date_created = db.Column(db.Date(), default=date.today())
-    date_created: Mapped[date] = mapped_column(db.Date(), default=date.today())
+    # category = db.Column(db.String(100), unique=False, nullable=True)
+    category: Mapped[Optional[str]] = mapped_column(db.String(100))
+    # rarity = db.Column(db.String(100), unique=False, nullable=True)
+    rarity: Mapped[Optional[str]] = mapped_column(db.String(100))
+    # price = db.Column(db.Float(), unique=False, nullable=True)
+    price: Mapped[Optional[float]] = mapped_column(db.Float())
 
 
 class ItemSchema(ma.Schema):
     class Meta:
         model = Item
-        fields = ["id", "title", "description", "date_created"]
+        fields = ["id", "name", "description", "category", "rarity", "price"]

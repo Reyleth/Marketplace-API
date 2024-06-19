@@ -11,8 +11,9 @@ class User(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(String(200), unique=True)
-    name: Mapped[Optional[str]] = mapped_column(String(100))
+    username: Mapped[Optional[str]] = mapped_column(String(100))
     password: Mapped[str] = mapped_column(String(200))
+    created_at: Mapped[Optional[str]] = mapped_column(db.DateTime)
     is_admin: Mapped[bool] = mapped_column(Boolean(), server_default="false")
 
 
