@@ -21,3 +21,6 @@ ma = Marshmallow(app)
 jwt = JWTManager(app)
 bcrypt = Bcrypt(app)
 
+# from models.user import User
+# from models.items import Item
+
