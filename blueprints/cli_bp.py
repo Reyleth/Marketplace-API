@@ -1,4 +1,4 @@
-# from datetime import date
+from datetime import date
 from flask import Blueprint
 from init import db, bcrypt
 from models.user import User
@@ -15,14 +15,16 @@ def create_db():
     users = [
         User(
             email="admin@spam.com",
-            name="Admin",
+            username="Admin",
             password=bcrypt.generate_password_hash("spinynorman").decode("utf-8"),
+            created_at=date.today(),
             is_admin=True
             ),
         User(
             email="reguser@spam.com",
-            name="John Cleese",
-            password=bcrypt.generate_password_hash("tisbutascratch").decode("utf-8")
+            username="John Cleese",
+            password=bcrypt.generate_password_hash("tisbutascratch").decode("utf-8"),
+            created_at=date.today(),
             ),
     ]
 
