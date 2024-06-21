@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from init import db
-from models.items import Item, ItemSchema
+from models.item import Item, ItemSchema
 
 items_bp = Blueprint('items', __name__, url_prefix='/items') # Blueprint for items
 
