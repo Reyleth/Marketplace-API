@@ -1,5 +1,5 @@
 from datetime import date
-from init import db, ma
+from init import db
 from typing import Optional
 from sqlalchemy.orm import Mapped, mapped_column
 

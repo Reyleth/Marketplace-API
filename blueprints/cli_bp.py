@@ -2,6 +2,7 @@ from datetime import date
 from flask import Blueprint
 from init import db, bcrypt
 from models.user import User
+from models.item import Item
 
 
 db_commands = Blueprint('db', __name__)
@@ -28,6 +29,25 @@ def create_db():
             ),
     ]
 
-    db.session.add_all(users)
+    items = [
+        Item(
+            name="Holy Grail",
+            description="A sacred relic that grants eternal life",
+            category="Artifact",
+            rarity="Legendary",
+            price=1000000.00,
+            created_at=date.today(),
+            ),
+        Item(
+            name="Excalibur",
+            description="A legendary sword wielded by King Arthur",
+            category="Weapon",
+            rarity="Legendary",
+            price=500000.00,
+            created_at=date.today(),
+            ),
+    ]
+
+    db.session.add_all(users + items)
     db.session.commit()
     print("Tables created")
