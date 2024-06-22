@@ -14,6 +14,15 @@ def admin_only(func):
         return check_admin()
     return inner
 
+def user_auth(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
+        @jwt_required()
+        def check_user():
+            return func(*args, **kwargs)
+        return check_user()
+    return inner
+
 # This decorator will check if the user_id in the JWT is the same as the user_id in the URL
 def check_user(func):
     @wraps(func)
@@ -26,3 +35,17 @@ def check_user(func):
             return func(*args, **kwargs)
         return check_user_match()
     return inner
+
+# Decorator to check if the user is the seller of the listing
+def seller_only(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
+        @jwt_required()
+        def check_seller():
+            claims = get_jwt()
+            if claims.get("user_id") != kwargs.get("seller_id"):
+                return {"error": "Unauthorized"}, 403
+            return func(*args, **kwargs)
+        return check_seller()
+    return inner
+
