@@ -14,6 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = environ.get("DB_URI")
+app.config['JWT_SECRET_KEY'] = environ.get('JWT_KEY')
 
 db = SQLAlchemy(app, model_class=Base)
 ma = Marshmallow(app)

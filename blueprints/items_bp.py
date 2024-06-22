@@ -21,15 +21,18 @@ def get_all_items():
 
     # •	GET /items/{id}
 @items_bp.route('/<int:id>')
-def get_item(item_id):
-    item_var = db.get_or_404(Item, item_id)
+def get_item(id):
+    item_var = db.get_or_404(Item, id)
     return ItemSchema().dump(item_var)
 
     # •	POST /items
+# Assuming Item is your SQLAlchemy model and ItemSchema is your Marshmallow schema
 @items_bp.route('/create', methods=['POST'])
 @admin_only
 def create_item():
-    new_item = ItemSchema().load(request.json)
+    item_data = ItemSchema().load(request.json)
+    # Convert the dictionary to an Item model instance
+    new_item = Item(**item_data)
     db.session.add(new_item)
     db.session.commit()
     return ItemSchema().dump(new_item)
@@ -39,15 +42,18 @@ def create_item():
 @admin_only
 def update_item(item_id):
     item_var = db.get_or_404(Item, item_id)
-    item_var = ItemSchema().load(request.json, partial=True)
+    update_data = ItemSchema().load(request.json, partial=True)
+    # Update the model instance with the new data
+    for key, value in update_data.items():
+        setattr(item_var, key, value)
     db.session.commit()
     return ItemSchema().dump(item_var)
 
     # •	DELETE /items/{id}
 @items_bp.route('/<int:id>', methods=['DELETE'])
 @admin_only
-def delete_item(item_id):
-    item_var = db.get_or_404(Item, item_id)
+def delete_item(id):
+    item_var = db.get_or_404(Item, id)
     db.session.delete(item_var)
     db.session.commit()
     return {"message": "Item deleted successfully"}
