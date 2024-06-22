@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from init import db
 from models.item import Item, ItemSchema
+from auth import admin_only
 
 	# Items Endpoints
 	# •	GET /items
@@ -21,12 +22,12 @@ def get_all_items():
     # •	GET /items/{id}
 @items_bp.route('/<int:id>')
 def get_item(item_id):
-    card_var = db.get_or_404(Item, item_id)
-    return ItemSchema().dump(card_var)
+    item_var = db.get_or_404(Item, item_id)
+    return ItemSchema().dump(item_var)
 
     # •	POST /items
 @items_bp.route('/create', methods=['POST'])
-# admin only
+@admin_only
 def create_item():
     new_item = ItemSchema().load(request.json)
     db.session.add(new_item)
@@ -35,7 +36,7 @@ def create_item():
 
 	# •	PUT /items/{id}
 @items_bp.route('/<int:item_id>', methods=['PUT'])
-# admin only
+@admin_only
 def update_item(item_id):
     item_var = db.get_or_404(Item, item_id)
     item_var = ItemSchema().load(request.json, partial=True)
@@ -44,7 +45,7 @@ def update_item(item_id):
 
     # •	DELETE /items/{id}
 @items_bp.route('/<int:id>', methods=['DELETE'])
-# admin only
+@admin_only
 def delete_item(item_id):
     item_var = db.get_or_404(Item, item_id)
     db.session.delete(item_var)

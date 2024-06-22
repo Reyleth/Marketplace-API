@@ -37,6 +37,7 @@ def create_db():
             rarity="Legendary",
             price=1000000.00,
             created_at=date.today(),
+            owner_id=1  
             ),
         Item(
             name="Excalibur",
@@ -45,6 +46,7 @@ def create_db():
             rarity="Legendary",
             price=500000.00,
             created_at=date.today(),
+            owner_id=2
             ),
     ]
 
