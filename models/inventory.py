@@ -10,7 +10,7 @@ class Inventory(db.Model):
     # id = db.Column(db.Integer, primary_key=True)
     id: Mapped[int] = mapped_column(primary_key=True)
 
-    player_id: Mapped[int] = mapped_column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id: Mapped[int] = mapped_column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     item_id: Mapped[int] = mapped_column(db.Integer, db.ForeignKey('items.id'), nullable=False)
 
