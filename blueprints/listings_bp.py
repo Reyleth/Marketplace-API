@@ -5,7 +5,6 @@ from init import db
 from models.user import User
 from models.listing import Listing, ListingSchema
 from auth import seller_only
-from sqlalchemy import inspect
 
 listings_bp = Blueprint(
     "listings", __name__, url_prefix="/listings"
@@ -63,7 +62,7 @@ def create_listing():
 @listings_bp.route("/<int:listing_id>", methods=["PUT"])
 @seller_only
 def update_listing(listing_id):
-    listing_var = db.get_or_404(Listing, listing_id)
+    db.get_or_404(Listing, listing_id)
     try:
         updated_listing = ListingSchema().load(request.json, partial=True)
     except ValidationError as err:

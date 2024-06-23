@@ -1,4 +1,5 @@
 from datetime import date
+from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from init import db
 from typing import Optional
 from sqlalchemy.orm import Mapped, mapped_column
@@ -24,3 +25,11 @@ class Transaction(db.Model):
     status: Mapped[Optional[str]] = mapped_column(db.String(100), nullable=False)
 
     created_at: Mapped[date] = mapped_column(db.Date(), nullable=False)
+
+class TransactionSchema(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Transaction
+        sqla_session = db.session
+        load_instance = True
+        include_fk = True
+        fields = ["id", "buyer_id", "seller_id", "item_id", "listing_id", "price", "quantity", "status", "created_at"]

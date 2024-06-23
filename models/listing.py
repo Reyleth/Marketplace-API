@@ -1,7 +1,5 @@
 from datetime import date
-from enum import Enum
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import Enum as EnumType
 from init import db
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 

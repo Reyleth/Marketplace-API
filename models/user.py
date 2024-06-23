@@ -1,6 +1,6 @@
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, Text, Boolean
-from typing import Optional, List
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import String, Boolean
+from typing import Optional
 from marshmallow import fields
 from marshmallow.validate import Length
 from init import db, ma
