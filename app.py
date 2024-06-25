@@ -20,3 +20,7 @@ def hello_world():
 @app.route("/time")
 def time():
     return {"time": datetime.now().strftime("%Y-%m-%d %H:%M")}
+
+@app.route("/hello/<name>")
+def hello_name(name):
+    return {"message": f"Hello, {name}!"}
