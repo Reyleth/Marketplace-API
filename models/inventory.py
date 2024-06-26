@@ -1,6 +1,4 @@
 from init import db, ma
-# from datetime import date
-# from typing import Optional
 from sqlalchemy.orm import Mapped, mapped_column
 
 class Inventory(db.Model):
