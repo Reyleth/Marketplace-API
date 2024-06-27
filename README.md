@@ -41,3 +41,57 @@ By addressing these key issues, the Marketplace API enhances the overall gaming 
 ## Project Workflow
 
 This project is being managed and tracked via a github project located at <https://github.com/users/Reyleth/projects/2/views/1>
+
+## App Dependancies
+
+This application uses several third-party Python packages, each serving a specific purpose within the project. Here's a breakdown of these dependencies:
+
+1. **bcrypt (4.1.3)**: A library for hashing passwords. It's used to securely store user passwords by hashing them before they are stored in the database.
+
+2. **blinker (1.8.2)**: Provides support for Signals. It is often used in applications that use Flask to allow different parts of the application to communicate with each other without being directly connected.
+
+3. **cffi (1.16.0)**: Stands for C Foreign Function Interface. It's used to call C code from Python. It might be a dependency for other packages that need to compile C code.
+
+4. **click (8.1.7)**: A package for creating command-line interfaces. It's a dependency for Flask and is used to create management commands for Flask applications.
+
+5. **cryptography (42.0.8)**: Provides cryptographic recipes and primitives. It's used for secure password storage, generating tokens, and other security-related tasks.
+
+6. **Flask (3.0.3)**: A lightweight WSGI web application framework. It's the core framework used for building web applications in this project.
+
+7. **Flask-Bcrypt (1.0.1)**: An extension for Flask that provides bcrypt hashing utilities for your application. It integrates the bcrypt library with Flask.
+
+8. **Flask-JWT-Extended (4.6.0)**: An extension for Flask that adds support for JSON Web Tokens (JWT) in Flask applications, providing a way to handle user authentication.
+
+9. **flask-marshmallow (1.2.1)**: An integration layer for Flask and marshmallow (an ORM/ODM/schema validation library). It simplifies serialization and deserialization of complex data types to and from Python objects.
+
+10. **Flask-SQLAlchemy (3.1.1)**: An extension for Flask that adds support for SQLAlchemy, a SQL toolkit and Object-Relational Mapping (ORM) library for Python. It simplifies database operations.
+
+11. **itsdangerous (2.2.0)**: A library to pass trusted data to untrusted environments and back. It's often used with Flask to securely sign data, like cookies or URLs.
+
+12. **Jinja2 (3.1.4)**: A modern and designer-friendly templating language for Python, modeled after Django’s templates. It's Flask's default template engine.
+
+13. **jwt (1.3.1)**: A library to work with JSON Web Tokens. This might be a dependency pulled in by Flask-JWT-Extended or used directly for handling JWTs.
+
+14. **MarkupSafe (2.1.5)**: Escapes characters so a string is safe to use in HTML and XML. It's used by Jinja2 and Flask to prevent injection attacks.
+
+15. **marshmallow (3.21.3)**: A library for object serialization and deserialization, ORM/ODM/schema validation. It works well with many ORMs, web frameworks, and databases.
+
+16. **marshmallow-sqlalchemy (1.0.0)**: Provides SQLAlchemy integration with the marshmallow library, simplifying object serialization/deserialization for SQLAlchmey models.
+
+17. **packaging (24.1)**: A core utility for version handling and package compatibility. It's often a dependency for other packages to parse versions and specifications.
+
+18. **psycopg2 (2.9.9) and psycopg2-binary (2.9.9)**: PostgreSQL database adapters for Python. The binary package is a standalone package meant to avoid the need for compiling the C source code.
+
+19. **pycparser (2.22)**: A C parser in Python. It's a dependency for packages that need to parse C code, like cffi.
+
+20. **PyJWT (2.8.0)**: A Python library which allows you to encode and decode JSON Web Tokens (JWT). It's used for authentication mechanisms.
+
+21. **python-dotenv (1.0.1)**: Reads key-value pairs from a [`.env`] file and sets them as environment variables. It's used for managing application configuration and secrets.
+
+22. **SQLAlchemy (2.0.30)**: A SQL toolkit and Object-Relational Mapping (ORM) library for Python. It provides a full suite of well-known enterprise-level persistence patterns.
+
+23. **typing_extensions (4.12.2)**: Backported and experimental type hints for Python. It's used to provide additional typing features not available in the standard `typing` module.
+
+24. **Werkzeug (3.0.3)**: A WSGI utility library for Python. It's a dependency of Flask and provides various utilities for request, response objects, and other utility functions.
+
+These packages together provide a robust foundation for web application development, offering tools for web server management, security, database interaction, data validation and serialization, and much more.
