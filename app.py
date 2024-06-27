@@ -1,11 +1,13 @@
 from datetime import datetime
 from init import app
+from config import config
 from blueprints.cli_bp import db_commands
 from blueprints.users_bp import users_bp
 from blueprints.items_bp import items_bp
 from blueprints.listings_bp import listings_bp
 # from blueprints.transactions_bp import transactions_bp
 
+app.config.from_object(config)
 app.register_blueprint(db_commands)
 app.register_blueprint(users_bp)
 app.register_blueprint(items_bp)

@@ -32,14 +32,3 @@ def get_user_transactions(user_id):
     stmt = db.select(Transaction).where(Transaction.buyer_id == user_id)
     transactions_var = db.session.scalars(stmt).all()
     return TransactionSchema(many=True).dump(transactions_var)
-
-# 	•	PUT /transactions/{id}
-# @transactions_bp.route("/<int:transaction_id>", methods=["PUT"])
-# @admin_only
-# def update_transaction(transaction_id):
-#     transaction_var = db.get_or_404(Transaction, transaction_id)
-#     transaction_data = TransactionSchema().load(request.json)
-#     for key, value in transaction_data.items():
-#         setattr(transaction_var, key, value)
-#     db.session.commit()
-#     return TransactionSchema().dump(transaction_var)
