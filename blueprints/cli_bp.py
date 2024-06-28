@@ -3,6 +3,9 @@ from flask import Blueprint
 from init import db, bcrypt
 from models.user import User
 from models.item import Item
+from models.inventory import Inventory
+from models.listing import Listing
+# from models.transaction import Transaction
 
 
 db_commands = Blueprint('db', __name__)
@@ -48,6 +51,41 @@ def create_db():
             ),
     ]
 
-    db.session.add_all(users + items)
+    inventories = [
+        Inventory(
+            user_id=1,
+            item_id=1,
+            quantity=1,
+            ),
+        Inventory(
+            user_id=2,
+            item_id=2,
+            quantity=1,
+            ),
+    ]
+
+    listings = [
+        Listing(
+            item_id=1,
+            seller_id=1,
+            price=1000000.00,
+            quantity=1,
+            status="active",
+            created_at=date.today(),
+            ),
+        Listing(
+            item_id=2,
+            seller_id=2,
+            price=500000.00,
+            quantity=1,
+            status="active",
+            created_at=date.today(),
+            ),
+    ]
+
+    transactions = [
+    ]
+
+    db.session.add_all(users + items + inventories + listings + transactions)
     db.session.commit()
     print("Tables created")
