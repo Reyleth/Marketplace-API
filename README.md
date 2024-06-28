@@ -96,7 +96,7 @@ This application uses several third-party Python packages, each serving a specif
 
 These packages together provide a robust foundation for web application development, offering tools for web server management, security, database interaction, data validation and serialization, and much more.
 
-## Benefits and drawbacks to the underlying database system
+## Benefits and drawbacks to the underlying database and ORM system
 
 This database setup involves using SQLAlchemy as the ORM (Object-Relational Mapping) tool with PostgreSQL as the underlying database.
 
@@ -124,3 +124,7 @@ This database setup involves using SQLAlchemy as the ORM (Object-Relational Mapp
    - **Complexity:** With its advanced features comes complexity. Setting up, tuning, and maintaining a PostgreSQL database can require more expertise and effort compared to simpler database systems.
 
 In summary, the combination of SQLAlchemy and PostgreSQL provides a powerful, flexible, and reliable foundation for web applications, with trade-offs in terms of performance overhead and complexity. The choice of this stack is well-suited for applications that require complex data models, data integrity, and scalability, while also benefiting from an ORM's productivity and flexibility.
+
+## ERD Diagram
+
+<!-- diagram goes here -->
