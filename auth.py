@@ -1,7 +1,7 @@
 from functools import wraps
 from flask_jwt_extended import get_jwt, jwt_required
 
-
+# This decorator will check if the user is an admin
 def admin_only(func):
     @wraps(func)
     def inner(*args, **kwargs):
@@ -14,6 +14,7 @@ def admin_only(func):
         return check_admin()
     return inner
 
+# This decorator will check if the user is authenticated
 def user_auth(func):
     @wraps(func)
     def inner(*args, **kwargs):

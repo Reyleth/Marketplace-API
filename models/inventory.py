@@ -1,6 +1,7 @@
 from init import db, ma
 from sqlalchemy.orm import Mapped, mapped_column
 
+# Define the Inventory model
 class Inventory(db.Model):
 
     __tablename__ = "inventory"
@@ -14,6 +15,7 @@ class Inventory(db.Model):
 
     quantity: Mapped[int] = mapped_column(db.Integer, nullable=False)
 
+# Define the Inventory schema
 class InventorySchema(ma.Schema):
     class Meta:
         model = Inventory

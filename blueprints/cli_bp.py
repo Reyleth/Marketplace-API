@@ -10,6 +10,7 @@ from models.listing import Listing
 
 db_commands = Blueprint('db', __name__)
 
+# Create the database
 @db_commands.cli.command("create")
 def create_db():
     db.drop_all()

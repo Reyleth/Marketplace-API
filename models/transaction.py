@@ -4,6 +4,7 @@ from init import db
 from typing import Optional
 from sqlalchemy.orm import Mapped, mapped_column
 
+# Define the Transaction model
 class Transaction(db.Model):
 
     __tablename__ = "transactions"
@@ -26,6 +27,7 @@ class Transaction(db.Model):
 
     created_at: Mapped[date] = mapped_column(db.Date(), nullable=False)
 
+# Define the Transaction schema
 class TransactionSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = Transaction

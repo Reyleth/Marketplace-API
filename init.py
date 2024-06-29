@@ -7,21 +7,23 @@ from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
 
+
 class Base(DeclarativeBase):
     pass
 
+# Load environment variables from .env file
 load_dotenv()
+
+# Define the Flask application
 app = Flask(__name__)
 
+# Define configs
 app.config["SQLALCHEMY_DATABASE_URI"] = environ.get("DB_URI")
 app.config['JWT_SECRET_KEY'] = environ.get('JWT_KEY')
 
+# Initialize the database
 db = SQLAlchemy(app, model_class=Base)
 ma = Marshmallow(app)
 # db.init_app(app)
 jwt = JWTManager(app)
 bcrypt = Bcrypt(app)
-
-# from models.user import User
-# from models.items import Item
-

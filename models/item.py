@@ -3,6 +3,7 @@ from datetime import date
 from typing import Optional
 from sqlalchemy.orm import Mapped, mapped_column
 
+# Define the Item model
 class Item(db.Model):
 
     __tablename__ = "items"
@@ -23,7 +24,7 @@ class Item(db.Model):
     # created_at = db.Column(db.Date(), nullable=False)
     created_at: Mapped[date] = mapped_column(db.Date(), nullable=False, default=date.today())
 
-
+# Define the Item schema
 class ItemSchema(ma.Schema):
     class Meta:
         model = Item

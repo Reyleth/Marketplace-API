@@ -3,6 +3,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from init import db
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
+# Define the Listing model
 class Listing(db.Model):
     __tablename__ = "listings"
 
@@ -17,9 +18,10 @@ class Listing(db.Model):
     quantity: Mapped[int] = mapped_column(db.Integer, nullable=False, default=1)
 
     status: Mapped[str] = mapped_column(db.String, nullable=False, default="active")
-    
+
     created_at: Mapped[date] = mapped_column(db.Date(), nullable=False, default=date.today())
 
+# Define the Listing schema
 class ListingSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = Listing

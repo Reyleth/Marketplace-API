@@ -6,16 +6,10 @@ from models.user import User
 from models.listing import Listing, ListingSchema
 from auth import seller_only
 
+# Blueprint for listings
 listings_bp = Blueprint(
     "listings", __name__, url_prefix="/listings"
-)  # Blueprint for listings
-
-# • GET /listings
-# •	POST /listings
-# •	GET /listings/{id}
-# •	PUT /listings/{id}
-# •	DELETE /listings/{id}
-
+)  
 
 # • GET /listings
 @listings_bp.route("/")
