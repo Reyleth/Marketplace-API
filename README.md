@@ -128,3 +128,35 @@ In summary, the combination of SQLAlchemy and PostgreSQL provides a powerful, fl
 ## ERD Diagram
 
 <!-- diagram goes here -->
+
+## Explanation of the models
+
+The implemented models and their relationships in this project are designed to support a marketplace application. Here's a quick overview of the models and their relationships:
+
+1. **User**: Represents users of the marketplace. Users can be buyers or sellers.
+
+2. **Item**: Represents items that can be listed in the marketplace for sale.
+
+3. **Listing**: Represents a specific sale listing in the marketplace. It links an item to a seller and includes details like price, quantity, and status (e.g., active).
+
+4. **Inventory**: Represents the inventory of items that a user has. It links users to items and includes a quantity to indicate how many of each item a user possesses.
+
+5. **Transaction**: Represents a transaction in the marketplace. It links a buyer to a seller, an item, and the specific listing from which the item was purchased. It includes details like price, quantity, and status (e.g., completed).
+
+### Relationships:
+
+- **User to Listing (One-to-Many)**: A user can have multiple listings (as a seller), but each listing is associated with one seller. This relationship allows tracking of which user is selling what item.
+
+- **Item to Listing (One-to-Many)**: An item can be part of multiple listings (e.g., sold by different users or listed multiple times by the same user), but each listing is for one specific item. This relationship facilitates the management of listings for the same item by different sellers.
+
+- **User to Inventory (One-to-Many)**: A user can have multiple items in their inventory, but each inventory record is associated with one user. This relationship helps manage the items a user owns.
+
+- **Item to Inventory (One-to-Many)**: An item can be in the inventories of multiple users, but each inventory record is for one specific item. This relationship allows tracking of which users own a particular item.
+
+- **Transaction Relationships**:
+  - **Buyer to Transaction (One-to-Many)**: A user (as a buyer) can have multiple transactions, but each transaction is associated with one buyer. This relationship tracks the purchases made by a user.
+  - **Seller to Transaction (One-to-Many)**: Similarly, a user (as a seller) can have multiple transactions, but each transaction is associated with one seller. This tracks the sales made by a user.
+  - **Item to Transaction (One-to-Many)**: An item can be part of multiple transactions (sold multiple times), but each transaction is for one specific item. This helps in tracking the sales history of an item.
+  - **Listing to Transaction (One-to-One)**: Ideally, each transaction is linked to a specific listing from which an item was purchased. This relationship ensures that each transaction can be traced back to the specific listing, including the sale conditions like price and quantity.
+
+These relationships are crucial for the database implementation as they enable efficient data organization, retrieval, and integrity. They allow the application to easily query related data, such as all listings by a user, all transactions for an item, or the inventory of a user, facilitating the marketplace's core functionalities.
