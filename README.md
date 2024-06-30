@@ -2,6 +2,8 @@
 
 Webserver API for Coder Academy T2A2
 
+Github link: <https://github.com/Reyleth/Marketplace-API>
+
 ## Project Overview
 
 ### Problem Statement
@@ -41,6 +43,14 @@ By addressing these key issues, the Marketplace API enhances the overall gaming 
 ## Project Workflow
 
 This project is being managed and tracked via a github project located at <https://github.com/users/Reyleth/projects/2/views/1>
+
+### Early Stages
+
+[Early Stages](./imgs/Early_Stages.png)
+
+### Late Stages
+
+[Late Stages](./imgs/Late_Stages.png)
 
 ## App Dependancies
 
