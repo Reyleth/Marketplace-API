@@ -18,13 +18,13 @@ In a massively multiplayer online (MMO) game environment, managing in-game econo
 The Marketplace API addresses these problems by providing a structured and secure platform for item trading within a game. Here's how it solves the issues:
 
 1. **Centralized Trading Platform**:
-   - The API provides endpoints for creating and managing marketplace listings, allowing players to buy and sell items in a centralized location. This eliminates the need for direct player-to-player trades, making the process more efficient and accessible.
+   - The API provides routes for creating and managing marketplace listings, allowing players to buy and sell items in a centralized location. This eliminates the need for direct player-to-player trades, making the process more efficient and accessible.
 
 2. **Standardized Pricing Mechanism**:
    - By listing items with defined prices, the API ensures transparency and fairness in trades. Players can see the prices of items listed by others, helping to standardize market values and reduce price gouging.
 
 3. **Inventory Management**:
-   - The API includes endpoints for managing user inventories, allowing players to easily keep track of their items. Players can view their inventory, add new items, and remove items as needed, ensuring better organization.
+   - The API includes routes for managing user inventories, allowing players to easily keep track of their items. Players can view their inventory, add new items, and remove items as needed, ensuring better organization.
 
 4. **Secure Transactions**:
    - The API handles transactions securely, reducing the risk of scams and ensuring that trades are completed reliably. The transaction endpoints facilitate the buying and selling process, recording transaction details for accountability and security.
@@ -96,7 +96,7 @@ This application uses several third-party Python packages, each serving a specif
 
 These packages together provide a robust foundation for web application development, offering tools for web server management, security, database interaction, data validation and serialization, and much more.
 
-## Benefits and drawbacks to the underlying database and ORM system
+## Drawbacks and benefits to the underlying database and ORM system
 
 This database setup involves using SQLAlchemy as the ORM (Object-Relational Mapping) tool with PostgreSQL as the underlying database.
 
@@ -127,7 +127,7 @@ In summary, the combination of SQLAlchemy and PostgreSQL provides a powerful, fl
 
 ## ERD Diagram
 
-<!-- diagram goes here -->
+[ERD Diagram](./imgs/ERD_diagram.png)
 
 ## Explanation of the models
 
@@ -157,6 +157,6 @@ The implemented models and their relationships in this project are designed to s
   - **Buyer to Transaction (One-to-Many)**: A user (as a buyer) can have multiple transactions, but each transaction is associated with one buyer. This relationship tracks the purchases made by a user.
   - **Seller to Transaction (One-to-Many)**: Similarly, a user (as a seller) can have multiple transactions, but each transaction is associated with one seller. This tracks the sales made by a user.
   - **Item to Transaction (One-to-Many)**: An item can be part of multiple transactions (sold multiple times), but each transaction is for one specific item. This helps in tracking the sales history of an item.
-  - **Listing to Transaction (One-to-One)**: Ideally, each transaction is linked to a specific listing from which an item was purchased. This relationship ensures that each transaction can be traced back to the specific listing, including the sale conditions like price and quantity.
+  - **Listing to Transaction (One-to-One)**: Each transaction is linked to a specific listing from which an item was purchased. This relationship ensures that each transaction can be traced back to the specific listing, including the sale conditions like price and quantity.
 
 These relationships are crucial for the database implementation as they enable efficient data organization, retrieval, and integrity. They allow the application to easily query related data, such as all listings by a user, all transactions for an item, or the inventory of a user, facilitating the marketplace's core functionalities.

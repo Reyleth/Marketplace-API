@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from init import db
 from models.transaction import Transaction, TransactionSchema
-from auth import admin_only
+from auth import admin_only, buyer_only
 
 transactions_bp = Blueprint("transactions", __name__, url_prefix="/transactions")  # Blueprint for transactions
 
@@ -32,3 +32,12 @@ def get_user_transactions(user_id):
     stmt = db.select(Transaction).where(Transaction.buyer_id == user_id)
     transactions_var = db.session.scalars(stmt).all()
     return TransactionSchema(many=True).dump(transactions_var)
+
+    # •	POST /transactions/{id}/buy
+@transactions_bp.route("/<int:transaction_id>/buy", methods=["POST"])
+@buyer_only
+def buy_transaction(transaction_id):
+    transaction_var = db.get_or_404(Transaction, transaction_id)
+    transaction_var.status = "purchased"
+    db.session.commit()
+    return TransactionSchema().dump(transaction_var)
