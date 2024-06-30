@@ -17,19 +17,19 @@ def create_db():
     db.create_all()
     print("Database created")
 
-    # Create default data
+    # Create sample data
     users = [
         User(
             email="admin@spam.com",
             username="Admin",
-            password=bcrypt.generate_password_hash("spinynorman").decode("utf-8"),
+            password=bcrypt.generate_password_hash("secretpassword").decode("utf-8"),
             created_at=date.today(),
             is_admin=True
             ),
         User(
             email="reguser@spam.com",
-            username="John Cleese",
-            password=bcrypt.generate_password_hash("tisbutascratch").decode("utf-8"),
+            username="John Smith",
+            password=bcrypt.generate_password_hash("randompassword").decode("utf-8"),
             created_at=date.today(),
             ),
     ]

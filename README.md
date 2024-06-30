@@ -225,7 +225,15 @@ Listed below are all the routes used in this API.
 
 - **Description**: Adds an item to a user's inventory. Requires admin privileges.
 - **Parameters**: [`user_id`]("blueprints/users_bp.py") (in URL)
-- **Body**: Item data in JSON format.
+- **Body**: Login data in JSON format.
+
+```json
+{
+  "email": "admin@spam.com",
+  "password": "secretpassword"
+}
+```
+
 - **Response**:
   - **200 OK**: `{"message": "Item added to inventory"}`
   - **404 Not Found**: `{"error": "User not found"}`
@@ -274,6 +282,14 @@ Listed below are all the routes used in this API.
 
 - **Description**: Creates a new listing. Requires authentication.
 - **Body**: Listing data in JSON format.
+
+```json
+{
+  "item_id": 1,
+  "price": 20
+}
+```
+
 - **Response**:
   - **201 Created**: Listing data.
   - **403 Forbidden**: `{"message": "User not found"}`
@@ -283,6 +299,14 @@ Listed below are all the routes used in this API.
 - **Description**: Updates a specific listing. Requires seller privileges.
 - **Parameters**: [`listing_id`]("blueprints/listings_bp.py") (in URL)
 - **Body**: Updated listing data in JSON format.
+
+```json
+{
+  "item_id": 1,
+  "price": 50
+}
+```
+
 - **Response**: Updated listing data.
 
 ### DELETE /listings/<int:listing_id>
@@ -308,6 +332,17 @@ Listed below are all the routes used in this API.
 
 - **Description**: Creates a new item. Requires admin privileges.
 - **Body**: Item data in JSON format.
+
+```json
+{
+"name":"Sword",
+"description":"Just a plain old sword",
+"category":"Weapon",
+"rarity":"Common",
+"price":10.00,
+}
+```
+
 - **Response**: Item data.
 
 ### PUT /items/<int:item_id>
@@ -315,6 +350,17 @@ Listed below are all the routes used in this API.
 - **Description**: Updates a specific item. Requires admin privileges.
 - **Parameters**: [`item_id`]("blueprints/items_bp.py") (in URL)
 - **Body**: Updated item data in JSON format.
+
+```json
+{
+"name":"Sword",
+"description":"Just a cooler sword",
+"category":"Weapon",
+"rarity":"Rare",
+"price":50.00,
+}
+```
+
 - **Response**: Updated item data.
 
 ### DELETE /items/<int:item_id>
