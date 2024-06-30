@@ -15,6 +15,7 @@ app.register_blueprint(listings_bp)
 # app.register_blueprint(transactions_bp)
 
 
+# Basic routes on the root URL
 @app.route('/')
 def hello_world():
     return 'Welcome to the Marketplace API!'

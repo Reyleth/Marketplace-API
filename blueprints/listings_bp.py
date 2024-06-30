@@ -18,16 +18,13 @@ def get_all_listings():
     listings_var = db.session.scalars(stmt).all()
     return ListingSchema(many=True).dump(listings_var)
 
-    # • GET /listings/{id}
-
-
+# • GET /listings/{id}
 @listings_bp.route("/<int:listing_id>")
 def get_listing(listing_id):
     listing_var = db.get_or_404(Listing, listing_id)
     return ListingSchema().dump(listing_var)
 
-    # • POST /listings
-
+# • POST /listings
 @listings_bp.route("/create", methods=["POST"])
 @jwt_required()  # Ensure that this route requires authentication
 def create_listing():
@@ -50,13 +47,12 @@ def create_listing():
 
     return ListingSchema().dump(new_listing), 201
 
-    # • PUT /listings/{id}
-
-
+# • PUT /listings/{id}
 @listings_bp.route("/<int:listing_id>", methods=["PUT"])
 @seller_only
 def update_listing(listing_id):
     db.get_or_404(Listing, listing_id)
+    # Use ListingSchema to load the data, ensuring it matches the Listing model
     try:
         updated_listing = ListingSchema().load(request.json, partial=True)
     except ValidationError as err:
@@ -65,9 +61,7 @@ def update_listing(listing_id):
     db.session.commit()
     return ListingSchema().dump(updated_listing), 200
 
-    # • DELETE /listings/{id}
-
-
+# • DELETE /listings/{id}
 @listings_bp.route("/<int:listing_id>", methods=["DELETE"])
 @seller_only
 def delete_listing(listing_id):

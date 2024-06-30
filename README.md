@@ -100,7 +100,7 @@ These packages together provide a robust foundation for web application developm
 
 This database setup involves using SQLAlchemy as the ORM (Object-Relational Mapping) tool with PostgreSQL as the underlying database.
 
-### Benefits
+### Benefits of the DB and ORM
 
 1. **SQLAlchemy as ORM:**
    - **Abstraction and Flexibility:** SQLAlchemy provides a high-level abstraction for database interactions, allowing developers to work with Python objects instead of writing SQL queries directly. This can speed up development and reduce errors.
@@ -113,7 +113,7 @@ This database setup involves using SQLAlchemy as the ORM (Object-Relational Mapp
    - **Scalability:** Good support for large datasets and complex queries, with capabilities to scale vertically and horizontally.
    - **Strong Community and Ecosystem:** A large community and a wide range of extensions and tools available.
 
-### Drawbacks
+### Drawbacks of the DB and ORM
 
 1. **SQLAlchemy:**
    - **Performance Overhead:** The abstraction layer adds overhead, which can lead to slower performance compared to raw SQL for complex queries or high-load scenarios.
@@ -181,7 +181,7 @@ The implemented models and their relationships in this project are designed to s
 
 5. **Transaction**: Represents a transaction in the marketplace. It links a buyer to a seller, an item, and the specific listing from which the item was purchased. It includes details like price, quantity, and status (e.g., completed).
 
-### Relationships:
+### Relationships
 
 - **User to Listing (One-to-Many)**: A user can have multiple listings (as a seller), but each listing is associated with one seller. This relationship allows tracking of which user is selling what item.
 
@@ -209,7 +209,7 @@ Listed below are all the routes used in this API.
 
 - **Description**: Authenticates a user and returns a JWT token.
 - **Body**: `{"email": "user@example.com", "password": "password"}`
-- **Response**: 
+- **Response**:
   - **200 OK**: `{"token": "<JWT_TOKEN>"}`
   - **401 Unauthorized**: `{"error": "Invalid email or password"}`
 
@@ -217,7 +217,7 @@ Listed below are all the routes used in this API.
 
 - **Description**: Retrieves the inventory of a specific user.
 - **Parameters**: [`user_id`]("blueprints/users_bp.py") (in URL)
-- **Response**: 
+- **Response**:
   - **200 OK**: `{"inventory": [<items>]}`
   - **404 Not Found**: `{"error": "User not found"}`
 
@@ -226,7 +226,7 @@ Listed below are all the routes used in this API.
 - **Description**: Adds an item to a user's inventory. Requires admin privileges.
 - **Parameters**: [`user_id`]("blueprints/users_bp.py") (in URL)
 - **Body**: Item data in JSON format.
-- **Response**: 
+- **Response**:
   - **200 OK**: `{"message": "Item added to inventory"}`
   - **404 Not Found**: `{"error": "User not found"}`
 
@@ -236,7 +236,7 @@ Listed below are all the routes used in this API.
 
 - **Description**: Creates a new transaction. Requires admin privileges.
 - **Body**: Transaction data in JSON format.
-- **Response**: 
+- **Response**:
   - **200 OK**: Transaction data.
 
 ### GET /transactions/<int:transaction_id>
@@ -274,7 +274,7 @@ Listed below are all the routes used in this API.
 
 - **Description**: Creates a new listing. Requires authentication.
 - **Body**: Listing data in JSON format.
-- **Response**: 
+- **Response**:
   - **201 Created**: Listing data.
   - **403 Forbidden**: `{"message": "User not found"}`
 

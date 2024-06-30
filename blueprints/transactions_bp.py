@@ -6,10 +6,6 @@ from auth import admin_only, buyer_only
 transactions_bp = Blueprint("transactions", __name__, url_prefix="/transactions")  # Blueprint for transactions
 
 # •	POST /transactions
-# 	•	GET /transactions/{id}
-# 	•	GET /users/{id}/transactions
-
-# •	POST /transactions
 @transactions_bp.route("/create", methods=["POST"])
 @admin_only
 def create_transaction():
@@ -33,7 +29,7 @@ def get_user_transactions(user_id):
     transactions_var = db.session.scalars(stmt).all()
     return TransactionSchema(many=True).dump(transactions_var)
 
-    # •	POST /transactions/{id}/buy
+#   •	POST /transactions/{id}/buy
 @transactions_bp.route("/<int:transaction_id>/buy", methods=["POST"])
 @buyer_only
 def buy_transaction(transaction_id):

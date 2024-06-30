@@ -19,9 +19,9 @@ def user_auth(func):
     @wraps(func)
     def inner(*args, **kwargs):
         @jwt_required()
-        def check_user():
+        def check_user_auth():
             return func(*args, **kwargs)
-        return check_user()
+        return check_user_auth()
     return inner
 
 # This decorator will check if the user_id in the JWT is the same as the user_id in the URL

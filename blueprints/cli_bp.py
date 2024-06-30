@@ -17,6 +17,7 @@ def create_db():
     db.create_all()
     print("Database created")
 
+    # Create default data
     users = [
         User(
             email="admin@spam.com",
