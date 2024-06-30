@@ -125,6 +125,44 @@ This database setup involves using SQLAlchemy as the ORM (Object-Relational Mapp
 
 In summary, the combination of SQLAlchemy and PostgreSQL provides a powerful, flexible, and reliable foundation for web applications, with trade-offs in terms of performance overhead and complexity. The choice of this stack is well-suited for applications that require complex data models, data integrity, and scalability, while also benefiting from an ORM's productivity and flexibility.
 
+### Example
+
+```py
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+Base = declarative_base()
+
+class User(Base):
+    __tablename__ = 'users'
+    
+    id = Column(Integer, primary_key=True)
+    username = Column(String(50), unique=True, nullable=False)
+    email = Column(String(100), unique=True, nullable=False)
+    password = Column(String(100), nullable=False)
+    
+    def __repr__(self):
+        return f"<User(username='{self.username}', email='{self.email}')>"
+
+# Example usage
+if __name__ == "__main__":
+    engine = create_engine('sqlite:///example.db', echo=True)
+    Base.metadata.create_all(engine)
+    
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    
+    new_user = User(username='john_doe', email='john.doe@example.com', password='securepassword123')
+    session.add(new_user)
+    session.commit()
+    
+    user = session.query(User).filter_by(username='john_doe').first()
+    print(user)
+```
+
+This code snippet defines a simple User model using SQLAlchemy's ORM capabilities. It includes fields for id, username, email, and password.
+
 ## ERD Diagram
 
 [ERD Diagram](./imgs/ERD_diagram.png)
@@ -153,10 +191,134 @@ The implemented models and their relationships in this project are designed to s
 
 - **Item to Inventory (One-to-Many)**: An item can be in the inventories of multiple users, but each inventory record is for one specific item. This relationship allows tracking of which users own a particular item.
 
-- **Transaction Relationships**:
+- **Transaction Specific Relationships**:
   - **Buyer to Transaction (One-to-Many)**: A user (as a buyer) can have multiple transactions, but each transaction is associated with one buyer. This relationship tracks the purchases made by a user.
   - **Seller to Transaction (One-to-Many)**: Similarly, a user (as a seller) can have multiple transactions, but each transaction is associated with one seller. This tracks the sales made by a user.
   - **Item to Transaction (One-to-Many)**: An item can be part of multiple transactions (sold multiple times), but each transaction is for one specific item. This helps in tracking the sales history of an item.
   - **Listing to Transaction (One-to-One)**: Each transaction is linked to a specific listing from which an item was purchased. This relationship ensures that each transaction can be traced back to the specific listing, including the sale conditions like price and quantity.
 
 These relationships are crucial for the database implementation as they enable efficient data organization, retrieval, and integrity. They allow the application to easily query related data, such as all listings by a user, all transactions for an item, or the inventory of a user, facilitating the marketplace's core functionalities.
+
+## Route Endpoints
+
+Listed below are all the routes used in this API.
+
+## Users API
+
+### POST /users/login
+
+- **Description**: Authenticates a user and returns a JWT token.
+- **Body**: `{"email": "user@example.com", "password": "password"}`
+- **Response**: 
+  - **200 OK**: `{"token": "<JWT_TOKEN>"}`
+  - **401 Unauthorized**: `{"error": "Invalid email or password"}`
+
+### GET /users/<int:user_id>/inventory
+
+- **Description**: Retrieves the inventory of a specific user.
+- **Parameters**: [`user_id`]("blueprints/users_bp.py") (in URL)
+- **Response**: 
+  - **200 OK**: `{"inventory": [<items>]}`
+  - **404 Not Found**: `{"error": "User not found"}`
+
+### POST /users/<int:user_id>/inventory/add
+
+- **Description**: Adds an item to a user's inventory. Requires admin privileges.
+- **Parameters**: [`user_id`]("blueprints/users_bp.py") (in URL)
+- **Body**: Item data in JSON format.
+- **Response**: 
+  - **200 OK**: `{"message": "Item added to inventory"}`
+  - **404 Not Found**: `{"error": "User not found"}`
+
+## Transactions API
+
+### POST /transactions/create
+
+- **Description**: Creates a new transaction. Requires admin privileges.
+- **Body**: Transaction data in JSON format.
+- **Response**: 
+  - **200 OK**: Transaction data.
+
+### GET /transactions/<int:transaction_id>
+
+- **Description**: Retrieves a specific transaction.
+- **Parameters**: [`transaction_id`]("blueprints/transactions_bp.py") (in URL)
+- **Response**: Transaction data.
+
+### GET /users/<int:user_id>/transactions
+
+- **Description**: Retrieves all transactions for a specific user.
+- **Parameters**: [`user_id`]("blueprints/users_bp.py") (in URL)
+- **Response**: List of transactions.
+
+### POST /transactions/<int:transaction_id>/buy
+
+- **Description**: Marks a transaction as purchased. Requires buyer privileges.
+- **Parameters**: [`transaction_id`]("blueprints/transactions_bp.py") (in URL)
+- **Response**: Updated transaction data.
+
+## Listings API
+
+### GET /listings
+
+- **Description**: Retrieves all listings.
+- **Response**: List of listings.
+
+### GET /listings/<int:listing_id>
+
+- **Description**: Retrieves a specific listing.
+- **Parameters**: [`listing_id`]("blueprints/listings_bp.py") (in URL)
+- **Response**: Listing data.
+
+### POST /listings/create
+
+- **Description**: Creates a new listing. Requires authentication.
+- **Body**: Listing data in JSON format.
+- **Response**: 
+  - **201 Created**: Listing data.
+  - **403 Forbidden**: `{"message": "User not found"}`
+
+### PUT /listings/<int:listing_id>
+
+- **Description**: Updates a specific listing. Requires seller privileges.
+- **Parameters**: [`listing_id`]("blueprints/listings_bp.py") (in URL)
+- **Body**: Updated listing data in JSON format.
+- **Response**: Updated listing data.
+
+### DELETE /listings/<int:listing_id>
+
+- **Description**: Deletes a specific listing. Requires seller privileges.
+- **Parameters**: [`listing_id`]("blueprints/listings_bp.py") (in URL)
+- **Response**: `{"message": "Listing deleted successfully"}`
+
+## Items API
+
+### GET /items
+
+- **Description**: Retrieves all items.
+- **Response**: List of items.
+
+### GET /items/<int:item_id>
+
+- **Description**: Retrieves a specific item.
+- **Parameters**: [`item_id`]("blueprints/items_bp.py") (in URL)
+- **Response**: Item data.
+
+### POST /items/create
+
+- **Description**: Creates a new item. Requires admin privileges.
+- **Body**: Item data in JSON format.
+- **Response**: Item data.
+
+### PUT /items/<int:item_id>
+
+- **Description**: Updates a specific item. Requires admin privileges.
+- **Parameters**: [`item_id`]("blueprints/items_bp.py") (in URL)
+- **Body**: Updated item data in JSON format.
+- **Response**: Updated item data.
+
+### DELETE /items/<int:item_id>
+
+- **Description**: Deletes a specific item. Requires admin privileges.
+- **Parameters**: [`item_id`]("blueprints/items_bp.py") (in URL)
+- **Response**: `{"message": "Item deleted successfully"}`
