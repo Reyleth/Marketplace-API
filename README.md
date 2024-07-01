@@ -1,6 +1,6 @@
 # Marketplace-API
 
-Webserver API for Coder Academy T2A2
+Webserver API for Coder Academy T2A2 June 2024
 
 Github link: <https://github.com/Reyleth/Marketplace-API>
 
