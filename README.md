@@ -378,3 +378,5 @@ Listed below are all the routes used in this API.
 - **Description**: Deletes a specific item. Requires admin privileges.
 - **Parameters**: [`item_id`]("blueprints/items_bp.py") (in URL)
 - **Response**: `{"message": "Item deleted successfully"}`
+
+Ryley Croucher June 2024
