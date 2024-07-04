@@ -51,6 +51,14 @@ def create_db():
             price=500000.00,
             created_at=date.today(),
             ),
+        Item(
+            name="Mjolnir",
+            description="The hammer of Thor, the Norse god of thunder",
+            category="Weapon",
+            rarity="Legendary",
+            price=500000.00,
+            created_at=date.today(),
+        )
     ]
 
     inventories = [
