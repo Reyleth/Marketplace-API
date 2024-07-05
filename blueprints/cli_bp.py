@@ -58,6 +58,14 @@ def create_db():
             rarity="Legendary",
             price=500000.00,
             created_at=date.today(),
+        ),
+        Item(
+            name="Dragon's Breath",
+            description="A powerful potion that grants the user the ability to breathe fire",
+            category="Consumable",
+            rarity="Epic",
+            price=100000.00,
+            created_at=date.today(),
         )
     ]
 
