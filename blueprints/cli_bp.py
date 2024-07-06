@@ -32,6 +32,12 @@ def create_db():
             password=bcrypt.generate_password_hash("randompassword").decode("utf-8"),
             created_at=date.today(),
             ),
+        User(
+            email="helloworld@random.com",
+            username="Hello World",
+            password=bcrypt.generate_password_hash("protocol_alpha").decode("utf-8"),
+            created_at=date.today()
+        )
     ]
 
     items = [
