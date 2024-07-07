@@ -72,7 +72,15 @@ def create_db():
             rarity="Epic",
             price=100000.00,
             created_at=date.today(),
-        )
+        ),
+        Item(
+            name="Phoenix Down",
+            description="A feather from a phoenix that can revive the dead",
+            category="Consumable",
+            rarity="Rare",
+            price=50000.00,
+            created_at=date.today(),
+        ),
     ]
 
     inventories = [
