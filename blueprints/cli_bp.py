@@ -94,6 +94,11 @@ def create_db():
             item_id=2,
             quantity=1,
             ),
+        Inventory(
+            user_id=3,
+            item_id=3,
+            quantity=1,
+            ),
     ]
 
     listings = [
