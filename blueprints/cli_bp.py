@@ -118,6 +118,14 @@ def create_db():
             status="active",
             created_at=date.today(),
             ),
+        Listing(
+            item_id=3,
+            seller_id=3,
+            price=500000.00,
+            quantity=1,
+            status="active",
+            created_at=date.today(),
+            ),
     ]
 
     transactions = [
