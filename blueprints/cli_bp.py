@@ -37,6 +37,12 @@ def create_db():
             username="Hello World",
             password=bcrypt.generate_password_hash("protocol_alpha").decode("utf-8"),
             created_at=date.today()
+        ),
+        User(
+            email="randomuserthefourth@random.com",
+            username="Random User IV",
+            password=bcrypt.generate_password_hash("password123").decode("utf-8"),
+            created_at=date.today()
         )
     ]
 
