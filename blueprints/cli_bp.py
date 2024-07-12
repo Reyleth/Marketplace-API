@@ -93,6 +93,14 @@ def create_db():
             price=50000.00,
             created_at=date.today(),
         ),
+        Item(
+            name="Elixir",
+            description="A magical potion that restores health and mana",
+            category="Consumable",
+            rarity="Common",
+            price=10000.00,
+            created_at=date.today(),
+        )
     ]
 
     inventories = [
