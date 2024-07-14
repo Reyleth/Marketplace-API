@@ -100,6 +100,14 @@ def create_db():
             rarity="Common",
             price=10000.00,
             created_at=date.today(),
+        ),
+        Item(
+            name="Potion",
+            description="A basic potion that restores health",
+            category="Consumable",
+            rarity="Common",
+            price=1000.00,
+            created_at=date.today
         )
     ]
 
