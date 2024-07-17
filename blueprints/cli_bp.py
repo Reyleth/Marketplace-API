@@ -114,6 +114,14 @@ def create_db():
             rarity="Common",
             price=1000.00,
             created_at=date.today
+        ),
+        Item(
+            name="Antidote",
+            description="A potion that cures poison",
+            category="Consumable",
+            rarity="Common",
+            price=1000.00,
+            created_at=date.today()
         )
     ]
 
