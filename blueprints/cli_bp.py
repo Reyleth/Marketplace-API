@@ -145,6 +145,11 @@ def create_db():
             user_id=4,
             item_id=4,
             quantity=1,
+            ),
+        Inventory(
+            user_id=5,
+            item_id=5,
+            quantity=1,
             )
     ]
 
