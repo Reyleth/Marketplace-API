@@ -130,6 +130,14 @@ def create_db():
             rarity="Common",
             price=1000.00,
             created_at=date.today()
+        ),
+        Item(
+            name="Phoenix Feather",
+            description="A feather from a phoenix that can revive the dead",
+            category="Consumable",
+            rarity="Rare",
+            price=50000.00,
+            created_at=date.today()
         )
     ]
 
